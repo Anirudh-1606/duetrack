@@ -1,6 +1,28 @@
 "use client";
 
 import { useState } from "react";
+import {
+  Shield,
+  Smartphone,
+  Eye,
+  Zap,
+  Link2,
+  CalendarDays,
+  BellRing,
+  Check,
+  Minus,
+  ArrowRight,
+  IndianRupee,
+  FileSpreadsheet,
+  UserX,
+  Sparkles,
+  Clock,
+  TrendingUp,
+  Plus,
+  CheckCircle2,
+  Lock,
+  BarChart3,
+} from "lucide-react";
 
 function WaitlistForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
@@ -26,9 +48,11 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
   if (submitted) {
     return (
       <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-2xl p-8 text-center">
-        <div className="text-4xl mb-3">🎉</div>
-        <h3 className="text-xl font-bold text-white mb-2">You&apos;re on the list!</h3>
-        <p className="text-gray-400 text-sm">We&apos;ll reach out when DueTrack launches.</p>
+        <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+          <CheckCircle2 className="w-6 h-6 text-emerald-400" />
+        </div>
+        <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">You&apos;re on the list!</h3>
+        <p className="text-[var(--text-secondary)] text-sm">We&apos;ll reach out when DueTrack launches.</p>
       </div>
     );
   }
@@ -42,13 +66,13 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
           placeholder="your@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:border-emerald-500/30 transition-all text-sm"
+          className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:border-emerald-500/30 transition-all text-sm"
         />
         {compact ? (
           <button
             type="submit"
             disabled={loading}
-            className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-3 rounded-xl transition-all text-sm whitespace-nowrap disabled:opacity-50 shrink-0"
+            className="cta-pulse bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-3 rounded-xl transition-all text-sm whitespace-nowrap disabled:opacity-50 shrink-0"
           >
             {loading ? "..." : "Join Waitlist"}
           </button>
@@ -61,12 +85,12 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
             placeholder="WhatsApp number (for launch alerts)"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:border-emerald-500/30 transition-all text-sm"
+            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:border-emerald-500/30 transition-all text-sm"
           />
           <select
             value={businessType}
             onChange={(e) => setBusinessType(e.target.value)}
-            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-gray-500 focus:border-emerald-500/30 transition-all text-sm appearance-none"
+            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[var(--text-secondary)] focus:border-emerald-500/30 transition-all text-sm appearance-none"
           >
             <option value="">What describes you?</option>
             <option value="business-owner">Business Owner</option>
@@ -78,14 +102,91 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3.5 rounded-xl transition-all text-sm disabled:opacity-50"
+            className="w-full cta-pulse bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3.5 rounded-xl transition-all text-sm disabled:opacity-50"
           >
-            {loading ? "Joining..." : "Get Early Access →"}
+            {loading ? "Joining..." : "Get Early Access"}
           </button>
-          <p className="text-gray-700 text-xs text-center">No spam. Only launch updates.</p>
+          <p className="text-[var(--text-muted)] text-xs text-center">No spam. Only launch updates.</p>
         </>
       )}
     </form>
+  );
+}
+
+/* Mini dashboard mockup for hero section */
+function DashboardPreview() {
+  const deadlines = [
+    { name: "GSTR-3B", date: "Mar 20", status: "upcoming", days: 7 },
+    { name: "TDS Return", date: "Mar 31", status: "upcoming", days: 18 },
+    { name: "GSTR-1", date: "Mar 11", status: "filed", days: 0 },
+    { name: "PF Monthly", date: "Mar 15", status: "due-soon", days: 2 },
+    { name: "ESI Return", date: "Apr 15", status: "upcoming", days: 33 },
+  ];
+
+  return (
+    <div className="float relative w-full max-w-sm mx-auto lg:mx-0">
+      <div className="glass-card rounded-2xl p-5 space-y-4">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider font-medium">Compliance Calendar</p>
+            <p className="text-sm font-semibold text-[var(--text-primary)] mt-0.5">March 2026</p>
+          </div>
+          <div className="flex items-center gap-1.5 bg-emerald-500/10 px-2.5 py-1 rounded-full">
+            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
+            <span className="text-[10px] text-emerald-400 font-medium">All tracked</span>
+          </div>
+        </div>
+
+        {/* Deadlines list */}
+        <div className="space-y-2">
+          {deadlines.map((d, i) => (
+            <div key={i} className="flex items-center justify-between py-2 px-3 rounded-lg bg-white/[0.02] border border-white/[0.04]">
+              <div className="flex items-center gap-3">
+                <div className={`w-2 h-2 rounded-full ${
+                  d.status === "filed" ? "bg-emerald-400" :
+                  d.status === "due-soon" ? "bg-amber-400" :
+                  "bg-white/20"
+                }`} />
+                <div>
+                  <p className="text-xs font-medium text-[var(--text-primary)]">{d.name}</p>
+                  <p className="text-[10px] text-[var(--text-muted)]">{d.date}</p>
+                </div>
+              </div>
+              <div className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${
+                d.status === "filed" ? "bg-emerald-500/10 text-emerald-400" :
+                d.status === "due-soon" ? "bg-amber-500/10 text-amber-400" :
+                "bg-white/[0.04] text-[var(--text-muted)]"
+              }`}>
+                {d.status === "filed" ? "Filed" :
+                 d.status === "due-soon" ? `${d.days}d left` :
+                 `${d.days}d left`}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Health score */}
+        <div className="flex items-center justify-between pt-2 border-t border-white/[0.04]">
+          <div className="flex items-center gap-2">
+            <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="text-[10px] text-[var(--text-muted)]">Compliance Score</span>
+          </div>
+          <span className="text-sm font-bold text-emerald-400">94/100</span>
+        </div>
+      </div>
+
+      {/* Floating notification card */}
+      <div className="absolute -bottom-4 -left-4 glass-card rounded-xl p-3 flex items-center gap-3 max-w-[220px]">
+        <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/15 flex items-center justify-center shrink-0">
+          <BellRing className="w-4 h-4 text-amber-400" />
+        </div>
+        <div>
+          <p className="text-[10px] font-medium text-[var(--text-primary)]">PF due in 2 days</p>
+          <p className="text-[9px] text-[var(--text-muted)]">WhatsApp alert sent</p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -93,132 +194,155 @@ export default function Home() {
   return (
     <main className="relative">
       {/* Nav */}
-      <nav className="fixed top-0 w-full z-50 bg-[#050505]/60 backdrop-blur-xl border-b border-white/[0.04]">
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-2xl border-b border-white/[0.04]" style={{ background: 'rgba(9, 9, 10, 0.7)' }}>
         <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="shrink-0">
-              <rect width="28" height="28" rx="7" fill="#10b981" />
-              <path d="M8 14.5L12 18.5L20 10.5" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className="text-lg font-bold text-white tracking-tight">DueTrack</span>
+            <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
+              <Check className="w-4.5 h-4.5 text-black" strokeWidth={3} />
+            </div>
+            <span className="text-lg font-bold text-[var(--text-primary)] tracking-tight">DueTrack</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#features" className="text-sm text-gray-400 hover:text-white transition-colors hidden sm:block">Features</a>
-            <a href="#pricing" className="text-sm text-gray-400 hover:text-white transition-colors hidden sm:block">Pricing</a>
-            <a href="#waitlist" className="bg-white/[0.08] hover:bg-white/[0.12] text-white text-sm font-medium px-4 py-2 rounded-lg transition-all border border-white/[0.06]">
+            <a href="#features" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hidden sm:block">Features</a>
+            <a href="#pricing" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hidden sm:block">Pricing</a>
+            <a href="#faq" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hidden sm:block">FAQ</a>
+            <a href="#waitlist" className="bg-white/[0.08] hover:bg-white/[0.12] text-[var(--text-primary)] text-sm font-medium px-4 py-2 rounded-lg transition-all border border-white/[0.06] flex items-center gap-1.5">
               Join Waitlist
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="relative pt-36 pb-24 px-6 glow overflow-hidden">
+      <section className="relative pt-32 pb-20 lg:pb-28 px-6 aurora overflow-hidden">
         {/* Decorative grid */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
-        }} />
-        
-        <div className="max-w-4xl mx-auto text-center relative">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 relative badge-pulse mb-8">
-            <span className="bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full border border-emerald-500/20 backdrop-blur-sm">
-              <span className="inline-block w-1.5 h-1.5 bg-emerald-400 rounded-full mr-2 animate-pulse" />
-              Launching Soon
-            </span>
-          </div>
+        <div className="absolute inset-0 grid-bg opacity-30" />
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
-            <span className="gradient-text-white">Never miss a</span>
-            <br />
-            <span className="gradient-text">compliance deadline</span>
-          </h1>
-
-          <p className="text-base sm:text-lg text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed">
-            One dashboard for every Indian business deadline — GST, TDS, PF, ESI, ROC. 
-            Get alerts before it&apos;s too late.
-          </p>
-
-          <WaitlistForm compact />
-          
-          <p className="text-gray-600 text-xs mt-4">Free forever plan · No credit card · Setup in 2 minutes</p>
-
-          {/* Stats */}
-          <div className="flex items-center justify-center gap-8 sm:gap-12 mt-16 pt-8 border-t border-white/[0.04]">
-            {[
-              { value: "14M+", label: "GST businesses in India" },
-              { value: "₹50K+", label: "Avg penalty cost/year" },
-              { value: "47+", label: "Compliance deadlines/year" },
-            ].map((s, i) => (
-              <div key={i} className="text-center">
-                <div className="text-xl sm:text-2xl font-bold text-white">{s.value}</div>
-                <div className="text-xs text-gray-500 mt-1">{s.label}</div>
+        <div className="max-w-6xl mx-auto relative">
+          <div className="lg:grid lg:grid-cols-5 lg:gap-16 lg:items-center">
+            {/* Left column - Text */}
+            <div className="lg:col-span-3 text-center lg:text-left">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 relative badge-pulse mb-8">
+                <span className="bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full border border-emerald-500/20 backdrop-blur-sm flex items-center gap-2">
+                  <span className="inline-block w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
+                  Launching Soon
+                </span>
               </div>
-            ))}
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
+                <span className="gradient-text-white block">Your CA filed</span>
+                <span className="gradient-text-white block">everything on time.</span>
+                <span className="hero-serif text-emerald-400 block mt-2" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)' }}>
+                  Or did they?
+                </span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-[var(--text-secondary)] max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                47 compliance deadlines a year. Zero visibility into what&apos;s filed.
+                DueTrack gives you <span className="text-[var(--text-primary)] font-medium">one dashboard</span> for
+                GST, TDS, PF, ESI, ROC &mdash; with WhatsApp alerts before every deadline.
+              </p>
+
+              <div className="max-w-md mx-auto lg:mx-0">
+                <WaitlistForm compact />
+              </div>
+
+              <p className="text-[var(--text-muted)] text-xs mt-4 lg:text-left text-center">
+                Free forever plan &middot; No credit card &middot; Setup in 2 minutes
+              </p>
+
+              {/* Stats */}
+              <div className="flex items-center justify-center lg:justify-start gap-8 sm:gap-10 mt-12 pt-8 border-t border-white/[0.04]">
+                {[
+                  { value: "14M+", label: "GST businesses in India" },
+                  { value: "47+", label: "Deadlines per year" },
+                  { value: "₹50K+", label: "Avg penalty cost" },
+                ].map((s, i) => (
+                  <div key={i} className="text-center lg:text-left">
+                    <div className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] tracking-tight">{s.value}</div>
+                    <div className="text-[11px] text-[var(--text-muted)] mt-1">{s.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right column - Dashboard preview */}
+            <div className="lg:col-span-2 mt-16 lg:mt-0">
+              <DashboardPreview />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Problem - Bento Grid */}
-      <section className="py-24 px-6 border-t border-white/[0.04]">
+      <section className="py-24 px-6 section-divider">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 reveal">
             <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-3">The Problem</p>
             <h2 className="text-3xl sm:text-4xl font-bold gradient-text-white">
               Compliance shouldn&apos;t feel like this
             </h2>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-4">
             {[
               {
-                emoji: "💸",
+                icon: IndianRupee,
                 title: "Missed deadlines = real money lost",
                 desc: "Late GSTR-3B filing: ₹50/day. Late GSTR-1: ₹200/day. Late annual return: ₹100/day. It adds up to ₹50K+ per year for most businesses.",
                 accent: true,
               },
               {
-                emoji: "🔮",
+                icon: Eye,
                 title: "Paying your CA blindly",
                 desc: "You pay ₹10K/month but have zero proof anything was filed. No dashboard. No status. Just trust.",
+                accent: false,
               },
               {
-                emoji: "📋",
+                icon: FileSpreadsheet,
                 title: "Spreadsheets can't handle 47 deadlines",
                 desc: "GST, TDS, PF, ESI, ROC — each with different dates, forms, and rules. Excel breaks. You miss things.",
+                accent: false,
               },
               {
-                emoji: "🚪",
+                icon: UserX,
                 title: "ClearTax left you behind",
                 desc: "They raised $75M and moved upmarket. Small businesses? Dropped. You need an alternative built for you.",
                 accent: true,
               },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className={`card-glow rounded-2xl p-7 border transition-all ${
-                  item.accent
-                    ? "bg-gradient-to-br from-emerald-500/[0.04] to-transparent border-emerald-500/10"
-                    : "bg-white/[0.02] border-white/[0.06]"
-                }`}
-              >
-                <span className="text-2xl">{item.emoji}</span>
-                <h3 className="font-bold text-white mt-4 mb-2 text-lg">{item.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={i}
+                  className={`reveal glass-card rounded-2xl p-7 transition-all ${
+                    item.accent
+                      ? "bg-gradient-to-br from-emerald-500/[0.04] to-transparent !border-emerald-500/10"
+                      : ""
+                  }`}
+                  style={{ animationDelay: `${i * 80}ms` }}
+                >
+                  <div className="icon-box mb-5">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-[var(--text-primary)] mb-2 text-lg">{item.title}</h3>
+                  <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* How it Works */}
-      <section id="features" className="py-24 px-6 border-t border-white/[0.04] glow-subtle">
+      <section id="features" className="py-24 px-6 section-divider glow-subtle overflow-hidden">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 reveal">
             <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-3">How It Works</p>
             <h2 className="text-3xl sm:text-4xl font-bold gradient-text-white">
-              Three steps to compliance peace of mind
+              Three steps to compliance clarity
             </h2>
           </div>
 
@@ -228,154 +352,182 @@ export default function Home() {
                 step: "01",
                 title: "Enter your GSTIN",
                 desc: "We auto-detect your business type, state, and every compliance obligation that applies to you.",
-                icon: (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                  </svg>
-                ),
+                icon: Link2,
               },
               {
                 step: "02",
                 title: "See every deadline",
                 desc: "One unified calendar. Color-coded: green (filed), amber (upcoming), red (overdue). All compliance types.",
-                icon: (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                    <line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" />
-                    <line x1="3" y1="10" x2="21" y2="10" />
-                  </svg>
-                ),
+                icon: CalendarDays,
               },
               {
                 step: "03",
                 title: "Get alerted on WhatsApp",
                 desc: "7 days before. 1 day before. On your phone, via WhatsApp. Never scramble last-minute again.",
-                icon: (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                  </svg>
-                ),
+                icon: BellRing,
               },
-            ].map((item, i) => (
-              <div key={i} className="relative">
-                <div className="text-emerald-500/30 text-6xl font-extrabold absolute -top-2 -left-1">{item.step}</div>
-                <div className="relative pt-12">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
-                    {item.icon}
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <div key={i} className="relative reveal" style={{ animationDelay: `${i * 100}ms` }}>
+                  <div className="step-number text-7xl font-extrabold absolute -top-3 -left-1">{item.step}</div>
+                  <div className="relative pt-14">
+                    <div className="icon-box mb-5">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2">{item.title}</h3>
+                    <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{item.desc}</p>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Features Bento */}
-      <section className="py-24 px-6 border-t border-white/[0.04]">
+      <section className="py-24 px-6 section-divider">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 reveal">
             <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-3">Features</p>
             <h2 className="text-3xl sm:text-4xl font-bold gradient-text-white">
               Everything you need. Nothing you don&apos;t.
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Large card */}
-            <div className="md:col-span-2 border-gradient shimmer p-8 rounded-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+            {/* Wide card */}
+            <div className="md:col-span-4 border-gradient shimmer p-8 rounded-2xl reveal">
               <div className="relative z-10">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5">
-                  <span className="text-lg">🛡️</span>
+                <div className="icon-box icon-box-lg mb-6">
+                  <Shield className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Save ₹50,000+ per year in penalties</h3>
-                <p className="text-gray-400 text-sm leading-relaxed max-w-md">
-                  The average Indian SMB loses ₹20K-80K/year to late filing penalties alone. 
+                <h3 className="text-xl font-bold text-[var(--text-primary)] mb-3">Save ₹50,000+ per year in penalties</h3>
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed max-w-lg">
+                  The average Indian SMB loses ₹20K-80K/year to late filing penalties alone.
                   DueTrack ensures every deadline is tracked, every alert is sent, and every filing is on time.
                 </p>
               </div>
             </div>
 
-            {/* Small card */}
-            <div className="bg-white/[0.02] border border-white/[0.06] p-8 rounded-2xl card-glow">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5">
-                <span className="text-lg">📱</span>
+            {/* Narrow tall card */}
+            <div className="md:col-span-2 glass-card p-8 rounded-2xl reveal flex flex-col justify-between" style={{ animationDelay: '100ms' }}>
+              <div>
+                <div className="icon-box mb-5">
+                  <Smartphone className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2">Mobile-first</h3>
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                  Built for how you actually work — on your phone, between meetings.
+                </p>
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">Mobile-first design</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Built for how you actually work — on your phone, between meetings.
-              </p>
+              <div className="mt-6 flex items-center gap-2 text-emerald-400 text-xs font-medium">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Works offline too</span>
+              </div>
             </div>
 
-            {/* Small card */}
-            <div className="bg-white/[0.02] border border-white/[0.06] p-8 rounded-2xl card-glow">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5">
-                <span className="text-lg">👁️</span>
+            {/* Narrow card */}
+            <div className="md:col-span-2 glass-card p-8 rounded-2xl reveal" style={{ animationDelay: '150ms' }}>
+              <div className="icon-box mb-5">
+                <Eye className="w-5 h-5" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">CA transparency</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2">CA transparency</h3>
+              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
                 Invite your CA. They mark filings done. You see proof. Both accountable.
               </p>
             </div>
 
-            {/* Large card */}
-            <div className="md:col-span-2 bg-white/[0.02] border border-white/[0.06] p-8 rounded-2xl card-glow">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5">
-                <span className="text-lg">⚡</span>
+            {/* Wide card */}
+            <div className="md:col-span-4 glass-card p-8 rounded-2xl reveal" style={{ animationDelay: '200ms' }}>
+              <div className="flex items-start gap-6">
+                <div className="icon-box icon-box-lg shrink-0">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-[var(--text-primary)] mb-3">Always current. Always accurate.</h3>
+                  <p className="text-[var(--text-secondary)] text-sm leading-relaxed max-w-lg">
+                    Government changes rules constantly. We update deadlines instantly.
+                    New GST form? Updated. Deadline extended? Reflected. You never check CBIC again.
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Always current. Always accurate.</h3>
-              <p className="text-gray-400 text-sm leading-relaxed max-w-md">
-                Government changes rules constantly. We update deadlines instantly. 
-                New GST form? Updated. Deadline extended? Reflected. You never check CBIC again.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Comparison */}
-      <section className="py-24 px-6 border-t border-white/[0.04] glow-subtle">
+      <section className="py-24 px-6 section-divider glow-subtle overflow-hidden">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 reveal">
             <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-3">Comparison</p>
             <h2 className="text-3xl sm:text-4xl font-bold gradient-text-white">
               DueTrack vs. the alternatives
             </h2>
           </div>
 
-          <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden">
+          <div className="glass-card rounded-2xl overflow-hidden reveal">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-white/[0.06]">
-                  <th className="py-4 px-6 text-left text-gray-500 font-medium"></th>
-                  <th className="py-4 px-4 text-left">
-                    <span className="text-emerald-400 font-bold">DueTrack</span>
+                  <th className="py-5 px-6 text-left text-[var(--text-muted)] font-medium text-xs uppercase tracking-wider">Feature</th>
+                  <th className="py-5 px-4 text-center">
+                    <span className="text-emerald-400 font-bold text-sm">DueTrack</span>
                   </th>
-                  <th className="py-4 px-4 text-left text-gray-500 font-medium">ClearTax</th>
-                  <th className="py-4 px-4 text-left text-gray-500 font-medium hidden sm:table-cell">Tally</th>
-                  <th className="py-4 px-4 text-left text-gray-500 font-medium hidden sm:table-cell">Zoho</th>
+                  <th className="py-5 px-4 text-center text-[var(--text-muted)] font-medium">ClearTax</th>
+                  <th className="py-5 px-4 text-center text-[var(--text-muted)] font-medium hidden sm:table-cell">Tally</th>
+                  <th className="py-5 px-4 text-center text-[var(--text-muted)] font-medium hidden sm:table-cell">Zoho</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ["Unified compliance", "✅", "GST only", "GST only", "GST only"],
-                  ["WhatsApp alerts", "✅", "—", "—", "—"],
-                  ["CA collaboration", "✅", "—", "—", "—"],
-                  ["Mobile-first", "✅", "—", "—", "~"],
-                  ["Free tier", "✅", "—", "—", "✅"],
-                  ["Serves small biz", "✅", "Dropped ❌", "Complex", "✅"],
-                  ["Starting price", "₹0", "₹9K/yr", "₹18K", "₹749/mo"],
+                  { feature: "Unified compliance", dt: true, ct: "GST only", ta: "GST only", zo: "GST only" },
+                  { feature: "WhatsApp alerts", dt: true, ct: false, ta: false, zo: false },
+                  { feature: "CA collaboration", dt: true, ct: false, ta: false, zo: false },
+                  { feature: "Mobile-first", dt: true, ct: false, ta: false, zo: "partial" },
+                  { feature: "Free tier", dt: true, ct: false, ta: false, zo: true },
+                  { feature: "Serves small biz", dt: true, ct: "Dropped", ta: "Complex", zo: true },
+                  { feature: "Starting price", dt: "₹0", ct: "₹9K/yr", ta: "₹18K", zo: "₹749/mo" },
                 ].map((row, i) => (
-                  <tr key={i} className="border-b border-white/[0.03] last:border-0">
-                    <td className="py-3.5 px-6 text-gray-400 font-medium">{row[0]}</td>
-                    <td className="py-3.5 px-4 text-emerald-400 font-medium">{row[1]}</td>
-                    <td className="py-3.5 px-4 text-gray-500">{row[2]}</td>
-                    <td className="py-3.5 px-4 text-gray-500 hidden sm:table-cell">{row[3]}</td>
-                    <td className="py-3.5 px-4 text-gray-500 hidden sm:table-cell">{row[4]}</td>
+                  <tr key={i} className="comparison-row border-b border-white/[0.03] last:border-0">
+                    <td className="py-4 px-6 text-[var(--text-secondary)] font-medium">{row.feature}</td>
+                    <td className="py-4 px-4 text-center">
+                      {row.dt === true ? (
+                        <Check className="w-4 h-4 text-emerald-400 mx-auto" />
+                      ) : (
+                        <span className="text-emerald-400 font-semibold">{row.dt}</span>
+                      )}
+                    </td>
+                    <td className="py-4 px-4 text-center">
+                      {row.ct === false ? (
+                        <Minus className="w-4 h-4 text-[var(--text-muted)] mx-auto" />
+                      ) : row.ct === true ? (
+                        <Check className="w-4 h-4 text-[var(--text-muted)] mx-auto" />
+                      ) : (
+                        <span className="text-[var(--text-muted)]">{row.ct}</span>
+                      )}
+                    </td>
+                    <td className="py-4 px-4 text-center hidden sm:table-cell">
+                      {row.ta === false ? (
+                        <Minus className="w-4 h-4 text-[var(--text-muted)] mx-auto" />
+                      ) : row.ta === true ? (
+                        <Check className="w-4 h-4 text-[var(--text-muted)] mx-auto" />
+                      ) : (
+                        <span className="text-[var(--text-muted)]">{row.ta}</span>
+                      )}
+                    </td>
+                    <td className="py-4 px-4 text-center hidden sm:table-cell">
+                      {row.zo === false ? (
+                        <Minus className="w-4 h-4 text-[var(--text-muted)] mx-auto" />
+                      ) : row.zo === true ? (
+                        <Check className="w-4 h-4 text-[var(--text-muted)] mx-auto" />
+                      ) : row.zo === "partial" ? (
+                        <span className="text-[var(--text-muted)]">~</span>
+                      ) : (
+                        <span className="text-[var(--text-muted)]">{row.zo}</span>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -385,14 +537,14 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-24 px-6 border-t border-white/[0.04]">
+      <section id="pricing" className="py-24 px-6 section-divider">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 reveal">
             <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-3">Pricing</p>
             <h2 className="text-3xl sm:text-4xl font-bold gradient-text-white mb-3">
               Start free. Scale when ready.
             </h2>
-            <p className="text-gray-400">No hidden fees. No surprises. Cancel anytime.</p>
+            <p className="text-[var(--text-secondary)]">No hidden fees. No surprises. Cancel anytime.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
@@ -405,6 +557,7 @@ export default function Home() {
                 features: ["1 GSTIN", "GST deadlines", "Email alerts", "Basic dashboard"],
                 cta: "Start Free",
                 highlighted: false,
+                icon: Clock,
               },
               {
                 name: "Starter",
@@ -421,6 +574,7 @@ export default function Home() {
                 ],
                 cta: "Join Waitlist",
                 highlighted: true,
+                icon: TrendingUp,
               },
               {
                 name: "CA Practice",
@@ -437,57 +591,64 @@ export default function Home() {
                 ],
                 cta: "Join Waitlist",
                 highlighted: false,
+                icon: BarChart3,
               },
-            ].map((plan, i) => (
-              <div
-                key={i}
-                className={`relative rounded-2xl p-7 transition-all ${
-                  plan.highlighted
-                    ? "border-gradient bg-emerald-500/[0.03]"
-                    : "bg-white/[0.02] border border-white/[0.06] card-glow"
-                }`}
-              >
-                {plan.highlighted && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                    Most Popular
-                  </div>
-                )}
-                <h3 className="text-lg font-bold text-white">{plan.name}</h3>
-                <p className="text-gray-500 text-sm mb-4">{plan.desc}</p>
-                <div className="mb-6">
-                  <span className="text-4xl font-extrabold text-white">{plan.price}</span>
-                  <span className="text-gray-500 text-sm ml-1">{plan.period}</span>
-                </div>
-                <ul className="space-y-2.5 mb-8">
-                  {plan.features.map((f, j) => (
-                    <li key={j} className="text-sm text-gray-400 flex items-center gap-2.5">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0">
-                        <path d="M3 7L6 10L11 4" stroke="#10b981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#waitlist"
-                  className={`block text-center py-3 rounded-xl text-sm font-semibold transition-all ${
+            ].map((plan, i) => {
+              const PlanIcon = plan.icon;
+              return (
+                <div
+                  key={i}
+                  className={`reveal relative rounded-2xl p-7 transition-all ${
                     plan.highlighted
-                      ? "bg-emerald-500 hover:bg-emerald-400 text-black"
-                      : "bg-white/[0.05] hover:bg-white/[0.08] text-white border border-white/[0.08]"
+                      ? "border-gradient bg-emerald-500/[0.03]"
+                      : "glass-card"
                   }`}
+                  style={{ animationDelay: `${i * 100}ms` }}
                 >
-                  {plan.cta}
-                </a>
-              </div>
-            ))}
+                  {plan.highlighted && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                      <Sparkles className="w-3 h-3" />
+                      Most Popular
+                    </div>
+                  )}
+                  <div className="flex items-center gap-3 mb-1">
+                    <PlanIcon className="w-4 h-4 text-emerald-400" />
+                    <h3 className="text-lg font-bold text-[var(--text-primary)]">{plan.name}</h3>
+                  </div>
+                  <p className="text-[var(--text-muted)] text-sm mb-4">{plan.desc}</p>
+                  <div className="mb-6">
+                    <span className="text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">{plan.price}</span>
+                    <span className="text-[var(--text-muted)] text-sm ml-1">{plan.period}</span>
+                  </div>
+                  <ul className="space-y-2.5 mb-8">
+                    {plan.features.map((f, j) => (
+                      <li key={j} className="text-sm text-[var(--text-secondary)] flex items-center gap-2.5">
+                        <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="#waitlist"
+                    className={`block text-center py-3 rounded-xl text-sm font-semibold transition-all ${
+                      plan.highlighted
+                        ? "cta-pulse bg-emerald-500 hover:bg-emerald-400 text-black"
+                        : "bg-white/[0.05] hover:bg-white/[0.08] text-[var(--text-primary)] border border-white/[0.08]"
+                    }`}
+                  >
+                    {plan.cta}
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-24 px-6 border-t border-white/[0.04] glow-subtle">
+      <section id="faq" className="py-24 px-6 section-divider glow-subtle overflow-hidden">
         <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 reveal">
             <p className="text-emerald-400 text-sm font-semibold tracking-wide uppercase mb-3">FAQ</p>
             <h2 className="text-3xl font-bold gradient-text-white">Common questions</h2>
           </div>
@@ -519,15 +680,13 @@ export default function Home() {
                 a: "Yes. Invite your CA as a collaborator on Starter plan. They mark filings complete, you see status. The CA Practice plan is built specifically for firms managing 50+ clients.",
               },
             ].map((item, i) => (
-              <details key={i} className="group bg-white/[0.02] border border-white/[0.06] rounded-xl overflow-hidden">
-                <summary className="flex items-center justify-between p-5 cursor-pointer text-sm font-medium text-white hover:text-emerald-400 transition-colors">
+              <details key={i} className="group reveal glass-card rounded-xl overflow-hidden" style={{ animationDelay: `${i * 60}ms` }}>
+                <summary className="flex items-center justify-between p-5 cursor-pointer text-sm font-medium text-[var(--text-primary)] hover:text-emerald-400 transition-colors">
                   {item.q}
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 text-gray-600 group-open:rotate-45 transition-transform">
-                    <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
+                  <Plus className="w-4 h-4 shrink-0 text-[var(--text-muted)] group-open:rotate-45 transition-transform duration-200" />
                 </summary>
                 <div className="px-5 pb-5 -mt-1">
-                  <p className="text-gray-400 text-sm leading-relaxed">{item.a}</p>
+                  <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{item.a}</p>
                 </div>
               </details>
             ))}
@@ -535,31 +694,63 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Social proof / trust strip */}
+      <section className="py-16 px-6 section-divider">
+        <div className="max-w-4xl mx-auto">
+          <div className="glass-card rounded-2xl p-8 sm:p-10 reveal">
+            <div className="grid sm:grid-cols-3 gap-8 text-center">
+              <div>
+                <Lock className="w-5 h-5 text-emerald-400 mx-auto mb-3" />
+                <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">Bank-grade security</p>
+                <p className="text-xs text-[var(--text-muted)]">256-bit encryption. SOC2 compliant infrastructure.</p>
+              </div>
+              <div>
+                <Clock className="w-5 h-5 text-emerald-400 mx-auto mb-3" />
+                <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">2-minute setup</p>
+                <p className="text-xs text-[var(--text-muted)]">Enter your GSTIN. See deadlines instantly. No onboarding calls.</p>
+              </div>
+              <div>
+                <Shield className="w-5 h-5 text-emerald-400 mx-auto mb-3" />
+                <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">Built for India</p>
+                <p className="text-xs text-[var(--text-muted)]">Every compliance rule. Every state. Updated in real-time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
-      <section id="waitlist" className="py-24 px-6 border-t border-white/[0.04]">
-        <div className="max-w-xl mx-auto text-center">
+      <section id="waitlist" className="py-24 px-6 section-divider">
+        <div className="max-w-xl mx-auto text-center reveal">
+          <div className="icon-box icon-box-lg mx-auto mb-6">
+            <BellRing className="w-6 h-6" />
+          </div>
           <h2 className="text-3xl sm:text-4xl font-bold gradient-text-white mb-3">
-            Ready to stop missing deadlines?
+            Stop wondering. Start knowing.
           </h2>
-          <p className="text-gray-400 mb-10">
-            Join the waitlist. Be first to know when DueTrack launches.
+          <p className="text-[var(--text-secondary)] mb-10">
+            Join the waitlist and be first to see your compliance health score.
           </p>
           <WaitlistForm />
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-white/[0.04]">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
-              <rect width="28" height="28" rx="7" fill="#10b981" />
-              <path d="M8 14.5L12 18.5L20 10.5" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className="text-sm font-semibold text-gray-400">DueTrack</span>
-            <span className="text-gray-700 text-xs">by cipher.build</span>
+      <footer className="py-8 px-6 section-divider">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <div className="w-6 h-6 rounded-md bg-emerald-500 flex items-center justify-center">
+              <Check className="w-3.5 h-3.5 text-black" strokeWidth={3} />
+            </div>
+            <span className="text-sm font-semibold text-[var(--text-secondary)]">DueTrack</span>
+            <span className="text-[var(--text-muted)] text-xs">by cipher.build</span>
           </div>
-          <p className="text-gray-700 text-xs">© 2026 DueTrack. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <a href="#features" className="text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors">Features</a>
+            <a href="#pricing" className="text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors">Pricing</a>
+            <a href="#faq" className="text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors">FAQ</a>
+          </div>
+          <p className="text-[var(--text-muted)] text-xs">&copy; 2026 DueTrack. All rights reserved.</p>
         </div>
       </footer>
     </main>
