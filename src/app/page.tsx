@@ -24,6 +24,38 @@ import {
   BarChart3,
 } from "lucide-react";
 
+function Logo({ size = 32 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Clock circle - open at top-right where checkmark breaks through */}
+      <path
+        d="M20 4C11.16 4 4 11.16 4 20s7.16 16 16 16 16-7.16 16-16c0-2.8-.72-5.43-1.99-7.72"
+        stroke="#10b981"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+      {/* Clock hand at 12 o'clock */}
+      <path
+        d="M20 10V16"
+        stroke="#10b981"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      {/* Small dot at center of clock */}
+      <circle cx="20" cy="19.5" r="1.5" fill="#10b981" />
+      {/* Large checkmark overlapping the circle */}
+      <path
+        d="M12 20.5L18.5 27L36 8"
+        stroke="#10b981"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function WaitlistForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -196,10 +228,8 @@ export default function Home() {
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 backdrop-blur-2xl border-b border-white/[0.04]" style={{ background: 'rgba(9, 9, 10, 0.7)' }}>
         <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
-              <Check className="w-4.5 h-4.5 text-black" strokeWidth={3} />
-            </div>
+          <div className="flex items-center gap-2">
+            <Logo size={30} />
             <span className="text-lg font-bold text-[var(--text-primary)] tracking-tight">DueTrack</span>
           </div>
           <div className="flex items-center gap-6">
@@ -738,10 +768,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-8 px-6 section-divider">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-6 h-6 rounded-md bg-emerald-500 flex items-center justify-center">
-              <Check className="w-3.5 h-3.5 text-black" strokeWidth={3} />
-            </div>
+          <div className="flex items-center gap-2">
+            <Logo size={22} />
             <span className="text-sm font-semibold text-[var(--text-secondary)]">DueTrack</span>
             <span className="text-[var(--text-muted)] text-xs">by cipher.build</span>
           </div>
