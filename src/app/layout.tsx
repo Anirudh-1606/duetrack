@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "DueTrack — Never Miss a Compliance Deadline Again",
@@ -18,7 +15,6 @@ export const metadata: Metadata = {
     "ROC filing",
     "Indian business compliance",
     "GST deadline alerts",
-    "compliance management",
   ],
   openGraph: {
     title: "DueTrack — Never Miss a Compliance Deadline Again",
@@ -42,7 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
